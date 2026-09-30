@@ -4,6 +4,7 @@ import sys
 
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
+from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.enums import ParseMode
 
 from bot.config import get_settings
@@ -23,8 +24,14 @@ async def main() -> None:
     settings = get_settings()
     await init_db()
 
+    session = (
+        AiohttpSession(proxy=settings.telegram_proxy)
+        if settings.telegram_proxy
+        else AiohttpSession()
+    )
     bot = Bot(
         token=settings.bot_token,
+        session=session,
         default=DefaultBotProperties(parse_mode=ParseMode.HTML),
     )
     dp = Dispatcher()

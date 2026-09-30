@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Семейный Telegram-бот для двоих
 
 Общий бот для покупок, заметок, важных дат и напоминаний. Работает в Docker с PostgreSQL. Доступ только у людей из `FAMILY_MEMBERS`.
@@ -48,7 +47,7 @@ docker compose logs -f bot
 docker compose down
 ```
 
-Данные Postgres лежат в volume `postgres_data` и не пропадают при `down`.
+Данные Postgres лежат в volume `postgres_data` и не пропадают при `down`. Если менял `POSTGRES_PASSWORD` после первого запуска — нужен `docker compose down -v`, иначе база останется со старым паролем.
 
 ## Локальный запуск без Docker (опционально)
 
@@ -84,7 +83,3 @@ Dockerfile
 - `.env` в `.gitignore` — не коммить токены и пароли
 - В бота пускаются только люди из `FAMILY_MEMBERS`
 - В репозитории только `.env.example` с плейсхолдерами
-=======
-# family_bot
-Полезный бот для тех кто забывает дни рождения родственников и что нужно было купить
->>>>>>> d510b09b1cc002a5a46c46ee4bf27acd254e9af1
